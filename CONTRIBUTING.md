@@ -70,7 +70,7 @@ Create your own fork of the repository on GitHub.
 ### 2. Clone your fork
 
 ```bash
-git clone <your-fork-url>
+git clone <your-fork-url> github_tracker
 cd github_tracker
 ```
 
@@ -90,26 +90,17 @@ cd ..
 
 ### 5. Configure environment variables
 
-The application uses environment files for configuration.
+The Docker configuration expects environment files at:
 
-The Docker configuration expects:
+- `.env`
+- `backend/.env`
 
-```text
-.env
-backend/.env
-```
+Create these files locally when running the application or Docker workflow.
 
-Keep environment files containing secrets local.
-
-Never commit:
-
-* API keys
-* Database credentials
-* Passwords
-* Session secrets
-* Private tokens
+Do not commit environment files containing secrets, credentials, or API keys.
 
 ---
+
 
 ## Creating a Branch
 
@@ -166,7 +157,9 @@ cd backend
 npm install
 ```
 
-Run the backend using the appropriate script defined in the backend `package.json`.
+cd backend
+npm install
+npm start
 
 The backend Docker configuration exposes port `5000`.
 
@@ -215,7 +208,7 @@ npm run test:backend
 ### Frontend tests
 
 ```bash
-npm test
+npm test -- --run
 ```
 
 ### Lint
@@ -281,7 +274,7 @@ git commit -m "docs: improve contributor onboarding"
 git push origin feature/short-description
 ```
 
-Open a pull request against the project's main development branch.
+Open a pull request against the the main branch.
 
 ---
 
