@@ -119,6 +119,7 @@ This approach is useful when actively developing and debugging individual servic
 ---
 
 ### Option 2: Use Docker
+ **MongoDB:** MongoDB is not included in Docker Compose. Contributors must have MongoDB running separately and configure the backend to connect to it.
 
 Docker Compose can start the frontend and backend together.
 

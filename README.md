@@ -216,6 +216,7 @@ Keep the frontend and backend running in separate terminals during local develop
 
 
 ## Docker Development
+ **MongoDB:** MongoDB is not included in Docker Compose. Contributors must have MongoDB running separately and configure the backend to connect to it.
 
 Docker Compose provides a complete development setup containing frontend and backend services.
 
