@@ -1,142 +1,486 @@
-# 🌟 **GitHub Tracker** 🌟
-<!-- top -->
+# GitHub Tracker
 
-**Track Activity of Users on GitHub**
+**Track and analyze GitHub user activity.**
 
-Welcome to **GitHub Tracker**, a web app designed to help you monitor and analyze the activity of GitHub users. Whether you’re a developer, a project manager, or just curious, this tool simplifies tracking contributions and activity across repositories! 🚀👩‍💻
-
-<p align="center">
-  <img src="public/crl.png" height="60px" alt="github-tracker">
-</p>
-<table align="center">
-    <thead align="center">
-        <tr border: 2px;>
-            <td><b>🌟 Stars</b></td>
-            <td><b>🍴 Forks</b></td>
-            <td><b>🐛 Issues</b></td>
-            <td><b>🔔 Open PRs</b></td>
-            <td><b>🔕 Close PRs</b></td>
-        </tr>
-     </thead>
-    <tbody>
-      <tr>
-          <td><img alt="Stars" src="https://img.shields.io/github/stars/mehul-m-prajapati/github_tracker?style=flat&logo=github"/></td>
-          <td><img alt="Forks" src="https://img.shields.io/github/forks/mehul-m-prajapati/github_tracker?style=flat&logo=github"/></td>
-          <td><img alt="Issues" src="https://img.shields.io/github/issues/mehul-m-prajapati/github_tracker?style=flat&logo=github"/></td>
-          <td><img alt="Open Pull Requests" src="https://img.shields.io/github/issues-pr/mehul-m-prajapati/github_tracker?style=flat&logo=github"/></td>
-          <td><img alt="Closed Pull Requests" src="https://img.shields.io/github/issues-pr-closed/mehul-m-prajapati/github_tracker?style=flat&color=critical&logo=github"/></td>
-      </tr>
-    </tbody>
-</table>
+GitHub Tracker is a web application that helps users monitor and analyze GitHub activity across repositories. The project includes a React + Vite frontend, a Node.js + Express backend, MongoDB integration, Docker development/production workflows, and automated testing.
 
 ---
 
-## 🛠️ Tech Stack
+## Table of Contents
 
-- **Frontend**: React.js + Vite
-- **Styling**: TailwindCSS + Material UI
-- **Data Fetching**: Axios + React Query
-- **Backend**: Node.js + Express
+* [Overview](#overview)
+* [Tech Stack](#tech-stack)
+* [Project Structure](#project-structure)
+* [Prerequisites](#prerequisites)
+* [Local Setup](#local-setup)
+* [Environment Configuration](#environment-configuration)
+* [Running the Application](#running-the-application)
+* [Docker Development](#docker-development)
+* [Docker Production](#docker-production)
+* [Testing](#testing)
+* [Linting and Build](#linting-and-build)
+* [Contribution Workflow](#contribution-workflow)
+* [Troubleshooting](#troubleshooting)
 
 ---
 
-## 🚀 Setup Guide
-1. Clone the repository to your local machine:
-```bash
-$ git clone https://github.com/yourusername/github-tracker.git
+## Overview
+
+GitHub Tracker is organized into separate frontend and backend responsibilities:
+
+* **Frontend**: React and Vite application responsible for the user interface.
+* **Backend**: Node.js and Express application responsible for server-side functionality and API operations.
+* **Database**: MongoDB through Mongoose.
+* **Testing**: Jasmine and SuperTest for backend unit and integration tests, with Vitest and React Testing Library available for frontend testing.
+* **Containerization**: Docker and Docker Compose provide development and production workflows.
+
+---
+
+## Tech Stack
+
+### Frontend
+
+* React.js
+* Vite
+* React Router
+* Tailwind CSS
+* Material UI
+* Axios
+* Recharts
+* Framer Motion
+
+### Backend
+
+* Node.js
+* Express
+* MongoDB
+* Mongoose
+* Passport
+* Passport Local
+* Express Session
+* bcryptjs
+* Octokit
+
+### Testing
+
+* Jasmine
+* SuperTest
+* Vitest
+* React Testing Library
+* JSDOM
+
+### Development Tools
+
+* ESLint
+* Docker
+* Docker Compose
+* npm
+
+---
+
+## Project Structure
+
+```text
+github_tracker/
+├── .github/                # GitHub workflows and repository configuration
+├── backend/                # Node.js + Express backend
+├── public/                 # Static frontend assets
+├── spec/                   # Backend Jasmine unit/integration tests
+├── src/                    # React frontend source code
+├── .dockerignore           # Docker build exclusions
+├── .gitignore              # Git exclusions
+├── CODE_OF_CONDUCT.md      # Community guidelines
+├── CONTRIBUTING.md         # Contribution and onboarding guide
+├── docker-compose.yml      # Docker development and production services
+├── Dockerfile.dev          # Frontend development container
+├── Dockerfile.prod         # Frontend production container
+├── eslint.config.js        # ESLint configuration
+├── index.html              # Vite HTML entry point
+├── package.json            # Frontend and root project dependencies/scripts
+├── postcss.config.cjs      # PostCSS configuration
+├── tailwind.config.js      # Tailwind configuration
+├── tsconfig.json           # TypeScript configuration
+├── tsconfig.app.json       # Application TypeScript configuration
+├── tsconfig.node.json      # Node/Vite TypeScript configuration
+└── vite.config.ts          # Vite configuration
 ```
 
-2. Navigate to the project directory:
+---
+
+## Prerequisites
+
+Before setting up the project, install:
+
+* Node.js 20 or later
+* npm
+* Git
+* MongoDB
+* Docker Desktop (optional, required only for Docker workflows)
+
+Verify Node.js and npm:
+
 ```bash
-$ cd github-tracker
+node --version
+npm --version
 ```
 
-3. Run the frontend
+Verify Git:
+
 ```bash
-$ npm i
-$ npm run dev
+git --version
 ```
 
-4. Run the backend
+If you are using the local MongoDB setup, make sure MongoDB is installed and running before starting backend services.
+
+---
+
+## Local Setup
+
+### 1. Clone the repository
+
 ```bash
-$ npm i
-$ npm start
+git clone <repository-url>
+cd github_tracker
 ```
 
-## 🧪 Backend Unit & Integration Testing with Jasmine
+### 2. Install root dependencies
 
-This project uses the Jasmine framework for backend unit and integration tests. The tests cover:
-- User model (password hashing, schema, password comparison)
-- Authentication routes (signup, login, logout)
-- Passport authentication logic (via integration tests)
+From the project root:
 
-### Prerequisites
-- **Node.js** and **npm** installed
-- **MongoDB** running locally (default: `mongodb://127.0.0.1:27017`)
-
-### Installation
-Install all required dependencies:
-```sh
+```bash
 npm install
-npm install --save-dev jasmine @types/jasmine supertest express-session passport passport-local bcryptjs
 ```
 
-### Running the Tests
-1. **Start MongoDB** (if not already running):
-   ```sh
-   mongod
-   ```
-2. **Run Jasmine tests:**
-   ```sh
-   npx jasmine
-   ```
+### 3. Install backend dependencies
 
-### Test Files
-- `spec/user.model.spec.cjs` — Unit tests for the User model
-- `spec/auth.routes.spec.cjs` — Integration tests for authentication routes
+Open a second terminal:
 
-### Jasmine Configuration
-The Jasmine config (`spec/support/jasmine.mjs`) is set to recognize `.cjs`, `.js`, and `.mjs` test files:
-```js
-spec_files: [
-  "**/*[sS]pec.?(m)js",
-  "**/*[sS]pec.cjs"
-]
+```bash
+cd backend
+npm install
 ```
 
-### Troubleshooting
-- **No specs found:** Ensure your test files have the correct extension and are in the `spec/` directory.
-- **MongoDB connection errors:** Make sure MongoDB is running and accessible.
-- **Missing modules:** Install any missing dev dependencies with `npm install --save-dev <module>`.
+### 4. Configure environment variables
 
-### What Was Covered
-- Jasmine is set up and configured for backend testing.
-- All major backend modules are covered by unit/integration tests.
-- Tests are passing and verified.
+The project uses environment files for configuration.
 
----
+The Docker Compose configuration expects:
 
-[![Star History Chart](https://api.star-history.com/svg?repos=GitMetricsLab/github_tracker&type=Date)](https://www.star-history.com/#GitMetricsLab/github_tracker&Date)
+```text
+.env
+backend/.env
+```
 
----
+Do not commit real secrets, API keys, database credentials, or session secrets to Git.
 
-# 👀 Our Contributors
-
-- We extend our heartfelt gratitude for your invaluable contribution to our project.
-- Make sure you show some love by giving ⭐ to our repository.
-
-<div align="center">
-  <a href="https://github.com/mehul-m-prajapati/github_tracker">
-    <img src="https://contrib.rocks/image?repo=GitMetricsLab/github_tracker&&max=1000" />
-  </a>
-</div>
-
-
+If environment variables are required for your local setup, create the required files locally using the variables expected by the frontend and backend configuration.
 
 ---
 
-<p align="center">
-  <a href="#top" style="font-size: 18px; padding: 8px 16px; display: inline-block; border: 1px solid #ccc; border-radius: 6px; text-decoration: none;">
-    ⬆️ Back to Top
-  </a>
-</p>
+## Running the Application
+
+### Frontend
+
+From the project root:
+
+```bash
+npm run dev
+```
+
+Vite starts the frontend development server on port `5173`.
+
+### Backend
+
+Open a separate terminal and move into the backend directory:
+
+```bash
+cd backend
+npm install
+```
+
+For development with automatic restart on file changes:
+
+```bash
+npm run dev
+```
+
+For a normal production-style start:
+
+```bash
+npm start
+```
+
+The backend server runs on port `5000` when configured through the project's Docker setup.
+
+Keep the frontend and backend running in separate terminals during local development.
+
+
+## Docker Development
+
+Docker Compose provides a complete development setup containing frontend and backend services.
+
+Make sure Docker Desktop is installed and running.
+
+From the project root:
+
+```bash
+docker compose --profile dev up --build
+```
+
+The corresponding npm shortcut is:
+
+```bash
+npm run docker:dev
+```
+
+### Development services
+
+| Service  | Port | Purpose                 |
+| -------- | ---: | ----------------------- |
+| Frontend | 5173 | Vite development server |
+| Backend  | 5000 | Express backend         |
+
+The development containers mount the local source directories, allowing changes to be reflected during development.
+
+To stop the development containers:
+
+```bash
+docker compose --profile dev down
+```
+
+---
+
+## Docker Production
+
+The project also provides a production Docker configuration.
+
+Build and start the production services:
+
+```bash
+docker compose --profile prod up -d --build
+```
+
+Or use:
+
+```bash
+npm run docker:prod
+```
+
+### Production services
+
+| Service  | Port | Purpose                       |
+| -------- | ---: | ----------------------------- |
+| Frontend | 3000 | Nginx-served production build |
+| Backend  | 5000 | Production backend            |
+
+To stop the production containers:
+
+```bash
+docker compose --profile prod down
+```
+
+---
+
+## Testing
+
+The repository contains backend unit and integration tests using Jasmine and SuperTest.
+
+### Backend tests
+
+From the project root:
+
+```bash
+npm run test:backend
+```
+
+The backend tests cover areas including:
+
+* User model behaviour
+* Password hashing
+* Password comparison
+* Authentication routes
+* Signup and login flows
+* Passport authentication logic
+* API integration behaviour
+
+You can also run Jasmine directly when required:
+
+```bash
+npx jasmine
+```
+
+### Test files
+
+Backend test files are located under:
+
+```text
+spec/
+```
+
+Examples include:
+
+```text
+spec/user.model.spec.cjs
+spec/auth.routes.spec.cjs
+```
+
+### Frontend tests
+
+Vitest is available through:
+
+```bash
+npm test
+```
+
+Additional frontend testing dependencies include React Testing Library and JSDOM.
+
+---
+
+## Linting and Build
+
+Run ESLint:
+
+```bash
+npm run lint
+```
+
+Create a production frontend build:
+
+```bash
+npm run build
+```
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+These checks should be performed before submitting a pull request where applicable.
+
+---
+
+## Contribution Workflow
+
+The recommended contribution workflow is:
+
+```text
+Fork repository
+      ↓
+Clone your fork
+      ↓
+Create a feature branch
+      ↓
+Install dependencies
+      ↓
+Create and test changes
+      ↓
+Run lint/tests/build
+      ↓
+Commit changes
+      ↓
+Push branch
+      ↓
+Open Pull Request
+      ↓
+Address review feedback
+```
+
+For detailed contribution instructions, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
+## Troubleshooting
+
+### `npm install` fails
+
+Check that you are using a supported Node.js version:
+
+```bash
+node --version
+```
+
+Then remove dependencies and reinstall if necessary:
+
+```bash
+rm -rf node_modules
+npm install
+```
+
+On Windows, you can delete the `node_modules` directory manually and run:
+
+```bash
+npm install
+```
+
+### Frontend does not start
+
+Make sure you are running the command from the repository root:
+
+```bash
+npm run dev
+```
+
+Check that port `5173` is not already being used.
+
+### Backend does not start
+
+Make sure backend dependencies are installed:
+
+```bash
+cd backend
+npm install
+```
+
+Also verify that MongoDB is running and that the required backend environment variables are configured.
+
+### MongoDB connection errors
+
+Make sure MongoDB is running and that the connection configuration in `backend/.env` is correct.
+
+The local MongoDB setup commonly uses:
+
+```text
+mongodb://127.0.0.1:27017
+```
+
+### Docker errors
+
+Make sure Docker Desktop is running.
+
+Check the available containers:
+
+```bash
+docker ps
+```
+
+Rebuild the development environment when dependencies or Docker configuration change:
+
+```bash
+docker compose --profile dev up --build
+```
+
+### Tests cannot find modules
+
+Install dependencies again:
+
+```bash
+npm install
+```
+
+If backend dependencies are missing:
+
+```bash
+cd backend
+npm install
+```
+
+---
+
+## Contribution
+
+New contributors should read [CONTRIBUTING.md](CONTRIBUTING.md) before making changes.
+
+Please ensure that changes are focused, tested where applicable, and clearly described in the pull request.
+
+Thank you for contributing to GitHub Tracker!
